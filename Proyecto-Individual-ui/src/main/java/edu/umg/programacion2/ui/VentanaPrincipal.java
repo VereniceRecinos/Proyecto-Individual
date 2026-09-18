@@ -1,6 +1,7 @@
 package edu.umg.programacion2.ui;
 
 import edu.umg.programacion2.dao.LibroDAO;
+import edu.umg.programacion2.excepcion.DatosException;
 import edu.umg.programacion2.modelo.Libro;
 
 import javax.swing.BorderFactory;
@@ -16,9 +17,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.sql.SQLException;
 import java.time.Year;
 import java.util.List;
 import java.util.Optional;
@@ -222,7 +221,7 @@ public class VentanaPrincipal extends JFrame {
                 );
             }
 
-        } catch (SQLException e) {
+        } catch (DatosException e) {
 
             JOptionPane.showMessageDialog(
                     this,
@@ -343,7 +342,7 @@ public class VentanaPrincipal extends JFrame {
                     + "contener valores numéricos."
             );
 
-        } catch (SQLException e) {
+        } catch (DatosException e) {
 
             mostrarMensaje(
                     "No se pudo registrar el libro en la base de datos."
@@ -392,7 +391,7 @@ public class VentanaPrincipal extends JFrame {
                 formulario.activarModoEdicion();
             }
 
-        } catch (SQLException e) {
+        } catch (DatosException e) {
 
             mostrarMensaje(
                     "No se pudo obtener el libro seleccionado."
@@ -462,7 +461,7 @@ public class VentanaPrincipal extends JFrame {
                     "Precio y existencias deben contener valores numéricos."
             );
 
-        } catch (SQLException e) {
+        } catch (DatosException e) {
 
             mostrarMensaje(
                     "No se pudieron guardar los cambios."
@@ -507,7 +506,7 @@ public class VentanaPrincipal extends JFrame {
                     "El ID debe ser un número entero."
             );
 
-        } catch (SQLException e) {
+        } catch (DatosException e) {
 
             mostrarMensaje(
                     "No se pudo realizar la búsqueda."
@@ -583,7 +582,7 @@ public class VentanaPrincipal extends JFrame {
                     JOptionPane.INFORMATION_MESSAGE
             );
 
-        } catch (SQLException e) {
+        } catch (DatosException e) {
 
             mostrarMensaje(
                     "No se pudieron eliminar los registros seleccionados."

@@ -1,5 +1,6 @@
 package edu.umg.programacion2.dao;
 
+import edu.umg.programacion2.excepcion.DatosException;
 import edu.umg.programacion2.modelo.Libro;
 import edu.umg.programacion2.util.Conexion;
 import java.sql.Connection;
@@ -13,7 +14,7 @@ import java.util.Optional;
 public class LibroDAO {
 	
 	public boolean existePorTituloYAutor(String titulo, String autor)
-	        throws SQLException {
+	        throws DatosException {
 
 	    String sql = "SELECT COUNT(*) "
 	            + "FROM libros "
@@ -32,11 +33,17 @@ public class LibroDAO {
 	            }
 	        }
 	    }
+	    
+	    catch (SQLException e) {
+	        throw new DatosException(
+	                "Error al verificar si el libro ya existe.", e
+	        );
+	    }
 
 	    return false;
 	}
 
-	public Libro crear(Libro libro) throws SQLException {
+	public Libro crear(Libro libro) throws DatosException {
 
 	    String sql = "INSERT INTO libros "
 	            + "(titulo, autor, categoria, precio, existencias, anio_publicacion) "
@@ -62,10 +69,15 @@ public class LibroDAO {
 	        }
 
 	        return libro;
+
+	    } catch (SQLException e) {
+	        throw new DatosException(
+	                "Error al registrar el libro.", e
+	        );
 	    }
 	}
 	
-	public List<Libro> listarTodos() throws SQLException {
+	public List<Libro> listarTodos() throws DatosException {
 
 	    String sql = "SELECT id, titulo, autor, categoria, precio, existencias, anio_publicacion "
 	            + "FROM libros";
@@ -91,11 +103,17 @@ public class LibroDAO {
 	            libros.add(libro);
 	        }
 	    }
+	    
+	    catch (SQLException e) {
+	        throw new DatosException(
+	                "Error al listar los libros.", e
+	        );
+	    }
 
 	    return libros;
 	}
 	
-	public Optional<Libro> buscarPorId(int id) throws SQLException {
+	public Optional<Libro> buscarPorId(int id) throws DatosException {
 
 	    String sql = "SELECT id, titulo, autor, categoria, precio, existencias, anio_publicacion "
 	            + "FROM libros "
@@ -124,11 +142,17 @@ public class LibroDAO {
 	            }
 	        }
 	    }
+	    
+	    catch (SQLException e) {
+	        throw new DatosException(
+	                "Error al buscar el libro.", e
+	        );
+	    }
 
 	    return Optional.empty();
 	}
 	
-	public boolean actualizar(Libro libro) throws SQLException {
+	public boolean actualizar(Libro libro) throws DatosException {
 
 	    String sql = "UPDATE libros SET "
 	            + "titulo = ?, "
@@ -154,9 +178,15 @@ public class LibroDAO {
 
 	        return filasAfectadas > 0;
 	    }
+	    
+	    catch (SQLException e) {
+	        throw new DatosException(
+	                "Error al actualizar el libro.", e
+	        );
+	    }
 	}
 	
-	public boolean eliminar(int id) throws SQLException {
+	public boolean eliminar(int id) throws DatosException {
 
 	    String sql = "DELETE FROM libros WHERE id = ?";
 
@@ -168,6 +198,12 @@ public class LibroDAO {
 	        int filasAfectadas = ps.executeUpdate();
 
 	        return filasAfectadas > 0;
+	    }
+	    
+	    catch (SQLException e) {
+	        throw new DatosException(
+	                "Error al eliminar el libro.", e
+	        );
 	    }
 	}
 }
