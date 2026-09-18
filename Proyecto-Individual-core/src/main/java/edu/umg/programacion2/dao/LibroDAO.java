@@ -11,6 +11,30 @@ import java.util.List;
 import java.util.Optional;
 
 public class LibroDAO {
+	
+	public boolean existePorTituloYAutor(String titulo, String autor)
+	        throws SQLException {
+
+	    String sql = "SELECT COUNT(*) "
+	            + "FROM libros "
+	            + "WHERE titulo = ? AND autor = ?";
+
+	    try (Connection conexion = Conexion.obtenerConexion();
+	         PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+	        ps.setString(1, titulo);
+	        ps.setString(2, autor);
+
+	        try (ResultSet rs = ps.executeQuery()) {
+
+	            if (rs.next()) {
+	                return rs.getInt(1) > 0;
+	            }
+	        }
+	    }
+
+	    return false;
+	}
 
 	public Libro crear(Libro libro) throws SQLException {
 
