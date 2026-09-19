@@ -1,9 +1,12 @@
 package edu.umg.programacion2.ui;
 
 import edu.umg.programacion2.dao.LibroDAO;
+
 import edu.umg.programacion2.excepcion.DatosException;
 import edu.umg.programacion2.modelo.Libro;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,6 +37,7 @@ public class VentanaPrincipal extends JFrame {
     private JButton botonEditar;
     private JButton botonEliminar;
     private JButton botonSalir;
+    private JButton botonConteoCategoria;
 
     private LibroDAO libroDAO;
 
@@ -152,6 +156,8 @@ public class VentanaPrincipal extends JFrame {
         botonEditar = new JButton("Editar");
 
         botonEliminar = new JButton("Eliminar");
+        
+        botonConteoCategoria = new JButton("Conteo por categoría");
 
         botonSalir = new JButton("Salir");
 
@@ -168,6 +174,7 @@ public class VentanaPrincipal extends JFrame {
         panel.add(panelBuscar);
         panel.add(botonEditar);
         panel.add(botonEliminar);
+        panel.add(botonConteoCategoria);
         panel.add(new JLabel(""));
         panel.add(botonSalir);
 
@@ -192,6 +199,10 @@ public class VentanaPrincipal extends JFrame {
 
         botonEliminar.addActionListener(
                 e -> eliminarLibros()
+        );
+        
+        botonConteoCategoria.addActionListener(
+                e -> mostrarConteoPorCategoria()
         );
 
         botonSalir.addActionListener(
@@ -633,6 +644,52 @@ public class VentanaPrincipal extends JFrame {
         formulario.limpiar();
 
         tablaLibros.clearSelection();
+    }
+    
+    private void mostrarConteoPorCategoria() {
+
+        try {
+
+            List<Libro> libros = libroDAO.listarTodos();
+
+            Map<String, Integer> conteoPorCategoria = new LinkedHashMap<>();
+
+            for (Libro libro : libros) {
+
+                String categoria = libro.getCategoria();
+
+                conteoPorCategoria.put(
+                        categoria,
+                        conteoPorCategoria.getOrDefault(categoria, 0) + 1
+                );
+            }
+
+            StringBuilder mensaje = new StringBuilder(
+                    "Cantidad de libros por categoría:\n\n"
+            );
+
+            for (Map.Entry<String, Integer> entrada
+                    : conteoPorCategoria.entrySet()) {
+
+                mensaje.append(entrada.getKey())
+                        .append(": ")
+                        .append(entrada.getValue())
+                        .append("\n");
+            }
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    mensaje.toString(),
+                    "Conteo por categoría",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+
+        } catch (DatosException e) {
+
+            mostrarMensaje(
+                    "No se pudo realizar el conteo por categoría."
+            );
+        }
     }
 
     private void salir() {
