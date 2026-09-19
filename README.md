@@ -153,3 +153,7 @@ DatosException
 ```
 
 permitiendo desacoplar la capa de presentación de la capa de acceso a datos.
+
+## Parcial 2
+
+Las mejoras correspondientes al segundo parcial se desarrollarán en la rama `Feature/parcial2`.
