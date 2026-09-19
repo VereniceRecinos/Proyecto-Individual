@@ -9,12 +9,13 @@ public class Libro {
 	    private double precio;
 	    private int existencias;
 	    private int anioPublicacion;
+	    private boolean bestSeller;
 
 	    public Libro() {
 	    }
 
 	    public Libro(int id, String titulo, String autor, String categoria,
-	                 double precio, int existencias, int anioPublicacion) {
+	                 double precio, int existencias, int anioPublicacion, boolean bestSeller) {
 	        this.id = id;
 	        this.titulo = titulo;
 	        this.autor = autor;
@@ -22,16 +23,18 @@ public class Libro {
 	        this.precio = precio;
 	        this.existencias = existencias;
 	        this.anioPublicacion = anioPublicacion;
+	        this.bestSeller = bestSeller;
 	    }
 
 	    public Libro(String titulo, String autor, String categoria,
-	                 double precio, int existencias, int anioPublicacion) {
+	                 double precio, int existencias, int anioPublicacion, boolean bestSeller) {
 	        this.titulo = titulo;
 	        this.autor = autor;
 	        this.categoria = categoria;
 	        this.precio = precio;
 	        this.existencias = existencias;
 	        this.anioPublicacion = anioPublicacion;
+	        this.bestSeller = bestSeller;
 	    }
 
 	    public int getId() {
@@ -88,6 +91,14 @@ public class Libro {
 
 	    public void setAnioPublicacion(int anioPublicacion) {
 	        this.anioPublicacion = anioPublicacion;
+	    }
+	    
+	    public boolean isBestSeller() {
+	        return bestSeller;
+	    }
+
+	    public void setBestSeller(boolean bestSeller) {
+	        this.bestSeller = bestSeller;
 	    }
 
 	    @Override
