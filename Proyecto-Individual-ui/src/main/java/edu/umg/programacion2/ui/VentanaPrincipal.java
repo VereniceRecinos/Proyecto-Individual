@@ -99,15 +99,16 @@ public class VentanaPrincipal extends JFrame {
         panel.add(etiquetaLibros, BorderLayout.NORTH);
 
         modeloTabla = new DefaultTableModel(
-                new Object[]{
-                    "ID",
-                    "Título",
-                    "Autor",
-                    "Categoría",
-                    "Precio (Q)",
-                    "Existencias",
-                    "Año de publicación"
-                },
+        		new Object[]{
+        			    "ID",
+        			    "Título",
+        			    "Autor",
+        			    "Categoría",
+        			    "Precio (Q)",
+        			    "Existencias",
+        			    "Año de publicación",
+        			    "Best Seller"
+        			},
                 0
         ) {
 
@@ -216,7 +217,8 @@ public class VentanaPrincipal extends JFrame {
                             libro.getCategoria(),
                             String.format("%.2f", libro.getPrecio()),
                             libro.getExistencias(),
-                            libro.getAnioPublicacion()
+                            libro.getAnioPublicacion(),
+                            libro.isBestSeller() ? "Sí" : "No"
                         }
                 );
             }
