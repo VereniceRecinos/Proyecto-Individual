@@ -23,5 +23,8 @@ CREATE TABLE IF NOT EXISTS libros (
     existencias INT NOT NULL,
     
     -- Año de publicación del libro.
-    anio_publicacion INT NOT NULL
+    anio_publicacion INT NOT NULL,
+    
+	-- Indica si el libro es considerado best seller.
+	best_seller BOOLEAN NOT NULL DEFAULT FALSE
 );
