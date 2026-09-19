@@ -176,7 +176,7 @@ public class LibroDAO {
 	        ps.setDouble(4, libro.getPrecio());
 	        ps.setInt(5, libro.getExistencias());
 	        ps.setInt(6, libro.getAnioPublicacion());
-	        ps.setInt(7, libro.getId());
+	        ps.setBoolean(7, libro.isBestSeller());
 	        ps.setInt(8, libro.getId());
 
 	        int filasAfectadas = ps.executeUpdate();
