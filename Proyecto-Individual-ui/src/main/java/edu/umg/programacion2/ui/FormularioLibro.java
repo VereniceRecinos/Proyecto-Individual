@@ -2,8 +2,10 @@ package edu.umg.programacion2.ui;
 
 import edu.umg.programacion2.modelo.Libro;
 
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -21,6 +23,7 @@ public class FormularioLibro extends JPanel {
     private JTextField campoPrecio;
     private JTextField campoExistencias;
     private JTextField campoAnioPublicacion;
+    private JCheckBox checkBestSeller;
 
     private JButton botonGuardar;
     private JButton botonCancelar;
@@ -48,6 +51,7 @@ public class FormularioLibro extends JPanel {
         campoPrecio = new JTextField(20);
         campoExistencias = new JTextField(20);
         campoAnioPublicacion = new JTextField(20);
+        checkBestSeller = new JCheckBox("Best Seller");
 
         botonGuardar = new JButton("Guardar");
         botonCancelar = new JButton("Cancelar");
@@ -96,6 +100,11 @@ public class FormularioLibro extends JPanel {
 
         gbc.gridx = 3;
         add(campoAnioPublicacion, gbc);
+        
+     // Best Seller
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        add(checkBestSeller, gbc);
 
         // Botón Guardar
         gbc.gridx = 4;
