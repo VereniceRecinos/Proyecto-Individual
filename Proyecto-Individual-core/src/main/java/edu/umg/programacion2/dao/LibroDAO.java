@@ -163,7 +163,8 @@ public class LibroDAO {
 	            + "categoria = ?, "
 	            + "precio = ?, "
 	            + "existencias = ?, "
-	            + "anio_publicacion = ? "
+	            + "anio_publicacion = ?, "
+	            + "best_seller = ? "
 	            + "WHERE id = ?";
 
 	    try (Connection conexion = Conexion.obtenerConexion();
@@ -176,6 +177,7 @@ public class LibroDAO {
 	        ps.setInt(5, libro.getExistencias());
 	        ps.setInt(6, libro.getAnioPublicacion());
 	        ps.setInt(7, libro.getId());
+	        ps.setInt(8, libro.getId());
 
 	        int filasAfectadas = ps.executeUpdate();
 
