@@ -117,7 +117,7 @@ public class LibroDAO {
 	
 	public Optional<Libro> buscarPorId(int id) throws DatosException {
 
-	    String sql = "SELECT id, titulo, autor, categoria, precio, existencias, anio_publicacion "
+	    String sql = "SELECT id, titulo, autor, categoria, precio, existencias, anio_publicacion, best_seller "
 	            + "FROM libros "
 	            + "WHERE id = ?";
 
@@ -137,7 +137,8 @@ public class LibroDAO {
 	                        rs.getString("categoria"),
 	                        rs.getDouble("precio"),
 	                        rs.getInt("existencias"),
-	                        rs.getInt("anio_publicacion")
+	                        rs.getInt("anio_publicacion"),
+	                        rs.getBoolean("best_seller")
 	                );
 
 	                return Optional.of(libro);
