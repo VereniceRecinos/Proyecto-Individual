@@ -255,6 +255,7 @@ public class VentanaPrincipal extends JFrame {
             double precio = obtenerPrecio();
             int existencias = obtenerExistencias();
             int anio = obtenerAnio();
+            boolean bestSeller = formulario.isBestSeller();
 
             if (titulo.isEmpty()) {
 
@@ -320,7 +321,8 @@ public class VentanaPrincipal extends JFrame {
                     categoria,
                     precio,
                     existencias,
-                    anio
+                    anio,
+                    bestSeller
             );
 
             libroDAO.crear(libro);
