@@ -45,9 +45,9 @@ public class LibroDAO {
 
 	public Libro crear(Libro libro) throws DatosException {
 
-	    String sql = "INSERT INTO libros "
-	            + "(titulo, autor, categoria, precio, existencias, anio_publicacion) "
-	            + "VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO libros "
+		        + "(titulo, autor, categoria, precio, existencias, anio_publicacion, best_seller) "
+		        + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 	    try (Connection conexion = Conexion.obtenerConexion();
 	         PreparedStatement ps = conexion.prepareStatement(
@@ -59,6 +59,7 @@ public class LibroDAO {
 	        ps.setDouble(4, libro.getPrecio());
 	        ps.setInt(5, libro.getExistencias());
 	        ps.setInt(6, libro.getAnioPublicacion());
+	        ps.setBoolean(7, libro.isBestSeller());
 
 	        ps.executeUpdate();
 
