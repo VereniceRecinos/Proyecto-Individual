@@ -157,6 +157,7 @@ public class FormularioLibro extends JPanel {
         campoPrecio.setText(String.valueOf(libro.getPrecio()));
         campoExistencias.setText(String.valueOf(libro.getExistencias()));
         campoAnioPublicacion.setText(String.valueOf(libro.getAnioPublicacion()));
+        checkBestSeller.setSelected(libro.isBestSeller());
     }
 
     public void limpiar() {
@@ -167,6 +168,7 @@ public class FormularioLibro extends JPanel {
         campoPrecio.setText("");
         campoExistencias.setText("");
         campoAnioPublicacion.setText("");
+        checkBestSeller.setSelected(false);
 
         campoAutor.setEnabled(true);
         campoAnioPublicacion.setEnabled(true);
@@ -212,5 +214,9 @@ public class FormularioLibro extends JPanel {
 
     public String getAnioPublicacion() {
         return campoAnioPublicacion.getText().trim();
+    }
+    
+    public boolean isBestSeller() {
+        return checkBestSeller.isSelected();
     }
 }
