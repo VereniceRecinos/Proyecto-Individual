@@ -80,7 +80,7 @@ public class LibroDAO {
 	
 	public List<Libro> listarTodos() throws DatosException {
 
-	    String sql = "SELECT id, titulo, autor, categoria, precio, existencias, anio_publicacion "
+	    String sql = "SELECT id, titulo, autor, categoria, precio, existencias, anio_publicacion, best_seller "
 	            + "FROM libros";
 
 	    List<Libro> libros = new ArrayList<>();
@@ -98,7 +98,8 @@ public class LibroDAO {
 	                    rs.getString("categoria"),
 	                    rs.getDouble("precio"),
 	                    rs.getInt("existencias"),
-	                    rs.getInt("anio_publicacion")
+	                    rs.getInt("anio_publicacion"),
+	                    rs.getBoolean("best_seller")
 	            );
 
 	            libros.add(libro);
