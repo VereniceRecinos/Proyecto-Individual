@@ -442,6 +442,7 @@ public class VentanaPrincipal extends JFrame {
             libroEnEdicion.setCategoria(categoria);
             libroEnEdicion.setPrecio(precio);
             libroEnEdicion.setExistencias(existencias);
+            libroEnEdicion.setBestSeller(formulario.isBestSeller());
 
             libroDAO.actualizar(libroEnEdicion);
 
